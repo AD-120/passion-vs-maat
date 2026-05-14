@@ -4,11 +4,12 @@ import {
   closestCenter,
   KeyboardSensor,
   PointerSensor,
+  TouchSensor,
   useSensor,
   useSensors,
-  DragStart,
-  DragOver,
-  DragEnd,
+  DragStartEvent,
+  DragOverEvent,
+  DragEndEvent,
   defaultDropAnimationSideEffects,
 } from '@dnd-kit/core';
 import {
@@ -36,7 +37,13 @@ export function TierList({ title, allItems, data, onChange }: TierListProps) {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 8,
+        distance: 5,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 200,
+        tolerance: 6,
       },
     }),
     useSensor(KeyboardSensor, {
@@ -49,11 +56,11 @@ export function TierList({ title, allItems, data, onChange }: TierListProps) {
     return data.levels.find((l) => l.itemIds.includes(id))?.id;
   }, [data]);
 
-  const handleDragStart = (event: DragStart) => {
+  const handleDragStart = (event: DragStartEvent) => {
     setActiveId(event.active.id as string);
   };
 
-  const handleDragOver = (event: DragOver) => {
+  const handleDragOver = (event: DragOverEvent) => {
     const { active, over } = event;
     if (!over) return;
 
@@ -95,7 +102,7 @@ export function TierList({ title, allItems, data, onChange }: TierListProps) {
     onChange(newData);
   };
 
-  const handleDragEnd = (event: DragEnd) => {
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (!over) {
       setActiveId(null);
@@ -141,8 +148,8 @@ export function TierList({ title, allItems, data, onChange }: TierListProps) {
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
     >
-      <div className="w-full bg-card-dark border border-[#333] overflow-hidden shadow-2xl flex flex-col md:flex-row min-h-[400px] md:min-h-[500px]">
-        <div className="flex-1 p-2 md:p-3">
+      <div className="w-full bg-white border border-border-light overflow-hidden shadow-sm flex flex-row h-[500px] md:h-[700px]">
+        <div className="flex-1 p-1 md:p-3 overflow-y-auto bg-white">
           <div className="flex flex-col gap-1">
             {data.levels.map((level) => (
               <TierRow
@@ -154,12 +161,12 @@ export function TierList({ title, allItems, data, onChange }: TierListProps) {
           </div>
         </div>
 
-        <div className="w-full md:w-72 bg-card-dark border-t md:border-t-0 md:border-r border-[#333] flex flex-col p-3 md:p-4 shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
-          <h3 className="text-[10px] font-bold text-gold uppercase tracking-[2px] mb-3 md:mb-4 border-b border-[#333] pb-2 text-center">
+        <div className="w-28 md:w-72 bg-bg-subtle border-r border-border-light flex flex-col p-2 md:p-4 shadow-[inset_0_0_10px_rgba(0,0,0,0.05)] shrink-0">
+          <h3 className="text-[9px] md:text-[10px] font-bold text-gold uppercase tracking-[1px] md:tracking-[2px] mb-2 md:mb-4 border-b border-border-light pb-2 text-center leading-tight">
             {title === 'הצהרות המעת' ? 'מאזני המשפט' : 'קוד הבושידו'}
           </h3>
-          <div className="max-h-[250px] md:max-h-none flex-1 overflow-y-auto">
-            <div className="flex flex-col gap-2 min-h-[80px]">
+          <div className="flex-1 overflow-y-auto overflow-x-hidden">
+            <div className="flex flex-col gap-1.5 md:gap-2 min-h-[80px] p-1">
               <SortableContext items={data.unassignedItems} strategy={verticalListSortingStrategy}>
                 {data.unassignedItems.map((id) => (
                   <DraggableItem
@@ -171,8 +178,8 @@ export function TierList({ title, allItems, data, onChange }: TierListProps) {
               </SortableContext>
             </div>
           </div>
-          <p className="mt-3 md:mt-4 text-[9px] md:text-[10px] text-ink/40 italic leading-relaxed text-center">
-            גרור את המידות לדרגת הדירוג המתאימה לפי הקושי האישי שלך
+          <p className="mt-2 md:mt-4 text-[8px] md:text-[10px] text-ink/40 italic leading-tight text-center">
+            גרור את המידות
           </p>
         </div>
       </div>
