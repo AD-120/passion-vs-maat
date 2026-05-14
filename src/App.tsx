@@ -35,7 +35,11 @@ export default function App() {
       const dataUrl = await toPng(exportRef.current, {
         backgroundColor: '#FFFFFF',
         quality: 1,
-        pixelRatio: 2, // Higher resolution
+        pixelRatio: 3, // Even higher resolution for clear text
+        style: {
+          transform: 'scale(1)',
+          borderRadius: '0',
+        }
       });
 
       if (isShare && navigator.share) {
@@ -112,6 +116,7 @@ export default function App() {
               allItems={MAAT_CONFESSIONS} 
               data={maatData} 
               onChange={setMaatData} 
+              isExporting={isExporting}
             />
           </section>
 
@@ -127,6 +132,7 @@ export default function App() {
               allItems={BUSHIDO_VIRTUES} 
               data={bushidoData} 
               onChange={setBushidoData} 
+              isExporting={isExporting}
             />
           </section>
         </div>
