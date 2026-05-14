@@ -151,12 +151,12 @@ export function TierList({ title, allItems, data, onChange, isExporting }: TierL
       onDragEnd={handleDragEnd}
     >
       <div className={cn(
-        "w-full bg-white border border-border-light overflow-hidden shadow-sm flex flex-col md:flex-row",
-        isExporting ? "h-auto" : "h-[600px] md:h-[700px]"
+        "w-full bg-white border border-border-light overflow-hidden shadow-sm flex flex-row",
+        isExporting ? "h-auto" : "h-[500px] md:h-[700px]"
       )}>
         <div className={cn(
           "flex-1 p-1 md:p-3 bg-white",
-          !isExporting ? "overflow-y-auto h-[400px] md:h-auto" : "h-auto"
+          !isExporting && "overflow-y-auto"
         )}>
           <div className="flex flex-col gap-1">
             {data.levels.map((level) => (
@@ -170,7 +170,7 @@ export function TierList({ title, allItems, data, onChange, isExporting }: TierL
         </div>
 
         {!isExporting && (
-          <div className="w-full md:w-72 bg-bg-subtle border-t md:border-t-0 md:border-r border-border-light flex flex-col p-2 md:p-4 shadow-[inset_0_0_10px_rgba(0,0,0,0.05)] shrink-0 h-48 md:h-full">
+          <div className="w-24 md:w-72 bg-bg-subtle border-r border-border-light flex flex-col p-2 md:p-4 shadow-[inset_0_0_10px_rgba(0,0,0,0.05)] shrink-0">
             <h3 className="text-[9px] md:text-[10px] font-bold text-gold uppercase tracking-[1px] md:tracking-[2px] mb-2 md:mb-4 border-b border-border-light pb-2 text-center leading-tight">
               {title === 'הצהרות המעת' ? 'מאזני המשפט' : 'קוד הבושידו'}
             </h3>
