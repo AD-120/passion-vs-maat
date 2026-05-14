@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --font-serif: "Georgia", serif;
+  
+  --color-gold: #D4AF37;
+  --color-crimson: #C41E3A;
+  --color-ink: #E0E0E0;
+  --color-bg-dark: #0C0C0C;
+  --color-card-dark: #1A1A1A;
+}
+
+body {
+  @apply bg-bg-dark text-ink antialiased selection:bg-gold selection:text-black;
+}
+
+/* Custom Scrollbar */
+::-webkit_scrollbar {
+  width: 6px;
+}
+::-webkit_scrollbar-track {
+  background: #0C0C0C;
+}
+::-webkit_scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+::-webkit_scrollbar-thumb:hover {
+  background: #444;
+}
