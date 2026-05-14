@@ -22,6 +22,7 @@ export function DraggableItem({ id, name, className }: DraggableItemProps) {
   const style = {
     transform: CSS.Translate.toString(transform),
     transition,
+    touchAction: 'none',
   };
 
   return (

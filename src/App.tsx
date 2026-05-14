@@ -79,13 +79,7 @@ export default function App() {
                src="/k3-logo.png" 
                alt="k3" 
                className="w-full h-full object-cover"
-               onError={(e) => {
-                 (e.target as HTMLImageElement).style.display = 'none';
-               }}
              />
-             <div className="bg-gold/10 w-full h-full flex items-center justify-center">
-                <span className="text-xs font-bold text-gold">k³</span>
-             </div>
           </div>
           <div className="flex flex-col text-right">
             <h1 className="font-serif text-lg md:text-xl text-[#0a0a0a] tracking-wider uppercase font-bold leading-tight">
