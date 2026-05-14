@@ -98,7 +98,6 @@ export default function App() {
         <div ref={exportRef} className="p-4 bg-white rounded-lg shadow-sm border border-border-light space-y-8 md:space-y-12">
           {/* Intro */}
           <div className="max-w-4xl mx-auto text-center space-y-1 md:space-y-4">
-            <h2 className="text-2xl font-serif text-[#fb32ff] font-black">סיכום הדירוג האישי</h2>
             <p className="text-[10px] md:text-base text-ink/60 font-light leading-relaxed max-w-2xl mx-auto">
               S = הכי משמעותי | E = הכי פחות משמעותי
             </p>
@@ -108,7 +107,7 @@ export default function App() {
           <section className="max-w-7xl mx-auto">
             <div className="flex items-center gap-2 md:gap-4 mb-3 md:mb-4">
               <span className="text-crimson font-black text-base md:text-lg">I.</span>
-              <h2 className="text-base md:text-xl font-serif text-ink font-bold leading-tight">דרג עד כמה הצווים המוסריים פוגעים ביכולת שלך לממש את התשוקות שלך (מתוך 42 הצהרות המעת)</h2>
+              <h2 className="text-base md:text-xl font-serif text-ink font-bold leading-tight">דרג עד כמה הצווים המוסריים פוגעים ביכולת שלך לממש את התשוקות שלך</h2>
               <div className="h-[1px] flex-1 bg-border-light"></div>
             </div>
             <TierList 
